@@ -4,7 +4,7 @@ node('DOTNETCORE'){
 		extensions: [], submoduleCfg: [], userRemoteConfigs: [[ url: '''https://github.com/FeynmanFan/JenkinsDocker''']]])
 	}
 	stage('Build'){
-		sh 'dotnet build ConsoleApp1'
+		sh 'dotnet build ConsoleApp1.sln'
 	}
 	stage('Test'){
 		echo 'Execute unit tests'
