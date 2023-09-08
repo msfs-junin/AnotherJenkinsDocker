@@ -38,14 +38,8 @@ pipeline {
         }
         
         stage('Deploy') {
-            steps {
-                script {
-                    def destinationFolder = 'path/to/your/destination/folder' // Update this path to your actual destination folder
-                    def zipFileName = 'build_result.zip'
-                    
-                    // Copy the zip file to the destination folder
-                    sh "cp ${zipFileName} ${destinationFolder}"
-                }
+             steps {
+                echo 'Deploying'
             }
         }
     }
