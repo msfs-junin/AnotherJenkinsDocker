@@ -9,10 +9,24 @@ node('DOTNETCORE'){
 	stage('Test'){
 		echo 'Execute unit tests'
 	}
-	stage('Package'){
-		echo 'zip it up'
+	stage('Package') {
+		steps {
+			script {
+				def buildDir = '.' // Update this path to your actual build directory
+				def zipFileName = 'build_result.zip'
+				// Create a zip file of the build results
+				zip archive: true, dir: buildDir, glob: '**/*', zipFile: zipFileName
+			}
+		}
 	}
-	stage('Deploy'){
-		echo 'Push to deployment'
+	stage('Deploy') {
+		steps {
+			script {
+				def destinationFolder = './destination/folder' // Update this path to your actual destination folder
+				def zipFileName = 'build_result.zip'
+				// Copy the zip file to the destination folder
+				sh "cp ${zipFileName} ${destinationFolder}"
+			}
+		}
 	}
 }
